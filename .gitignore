@@ -5,3 +5,4 @@
 /dist
 /ravens_torch.egg-info
 /block-insertion
+/pretrained/AdaBins_nyu.pt
