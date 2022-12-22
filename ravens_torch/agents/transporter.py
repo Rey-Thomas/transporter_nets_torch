@@ -15,6 +15,8 @@ from ravens_torch.tasks import cameras
 from ravens_torch.utils import utils
 
 from infer import InferenceHelper #Import Adabins
+from PIL import Image
+import matplotlib.pyplot as plt
 
 
 class TransporterAgent:
@@ -47,11 +49,17 @@ class TransporterAgent:
         if 'adabins' in self.name:
             print(f'type cmap: {type(cmap)}')
             print(f'shape cmap: {np.shape(cmap)}')
-            bin_centers, predicted_depth = self.adabins.predict(cmap)
-            print(f'type hmap: {type(predicted_depth)}')
-            print(f'shape cmap: {np.shape(predicted_depth)}')
-            print(f'type hmap: {type(bin_centers)}')
-            print(f'shape cmap: {np.shape(bin_centers)}')
+            input = Image.fromarray(cmap , 'RGB')
+            input = input.resize((640,480))
+            input.show()
+            bin_centers, predicted_depth = self.adabins.predict_pil(input)
+            print(f'type predicted_depth: {type(predicted_depth)}')
+            print(f'shape predicted_depth: {np.shape(predicted_depth)}')
+            print(f'type bin_centers: {type(bin_centers)}')
+            print(f'shape bin_centers: {np.shape(bin_centers)}')
+            plt.figure()
+            plt.imshow(predicted_depth[0][0], cmap='plasma')
+            plt.show()
 
 
         else:
@@ -411,6 +419,6 @@ class AdabinsTransporterAgent(TransporterAgent):
             crop_size=self.crop_size,
             preprocess=utils.preprocess,
             verbose=verbose)
-        self.adabins = InferenceHelper(dataset='nyu', device='gpu')
+        self.adabins = InferenceHelper(dataset='nyu', device='cuda')
 
 
