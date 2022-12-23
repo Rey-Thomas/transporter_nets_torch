@@ -49,17 +49,36 @@ class TransporterAgent:
         if 'adabins' in self.name:
             print(f'type cmap: {type(cmap)}')
             print(f'shape cmap: {np.shape(cmap)}')
+            print(f'type hmap: {type(hmap)}')
+            print(hmap)
+            print(f'shape hmap: {np.shape(hmap)}')
+            print(f'type hmap: {type(hmap[Ellipsis, None])}')
+            print(hmap[Ellipsis, None])
+            print(f'shape hmap: {np.shape(hmap[Ellipsis, None])}')
+            
             input = Image.fromarray(cmap , 'RGB')
+            input.show()
             input = input.resize((640,480))
             input.show()
+            plt.figure()
+            plt.imshow(hmap, cmap='plasma')
+            plt.show()
             bin_centers, predicted_depth = self.adabins.predict_pil(input)
             print(f'type predicted_depth: {type(predicted_depth)}')
             print(f'shape predicted_depth: {np.shape(predicted_depth)}')
             print(f'type bin_centers: {type(bin_centers)}')
             print(f'shape bin_centers: {np.shape(bin_centers)}')
+            pred = Image.fromarray(predicted_depth[0][0])
+            pred = pred.resize((160,320))
+            pred = np.asarray(pred)
             plt.figure()
-            plt.imshow(predicted_depth[0][0], cmap='plasma')
+            plt.imshow(np.asarray(pred), cmap='plasma')
             plt.show()
+
+            img = np.concatenate((cmap,
+                                pred[Ellipsis, None],
+                                pred[Ellipsis, None],
+                                pred[Ellipsis, None]), axis=2)
 
 
         else:
