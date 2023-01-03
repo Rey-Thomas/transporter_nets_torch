@@ -19,7 +19,8 @@ from ravens_torch.agents.transporter import PerPixelLossTransporterAgent
 from ravens_torch.agents.transporter_6dof import Transporter6dAgent
 
 from ravens_torch.agents.transporter import NoDepthTransporterAgent #added
-from ravens_torch.agents.transporter import AdabinsTransporterAgent #added
+from ravens_torch.agents.transporter import AdabinsTransporterAgent_nyu #added
+from ravens_torch.agents.transporter import AdabinsTransporterAgent_kitty #added
 
 names = {'dummy': DummyAgent,
          'transporter': OriginalTransporterAgent,
@@ -35,5 +36,6 @@ names = {'dummy': DummyAgent,
          'transporter-goal': GoalTransporterAgent,
          'transporter-goal-naive': GoalNaiveTransporterAgent,
          'no-depth-transporter': NoDepthTransporterAgent, #added
-         'adabins-transporter': AdabinsTransporterAgent #added
+         'adabins-nyu-transporter': AdabinsTransporterAgent_nyu, #added
+         'adabins-kitty-transporter': AdabinsTransporterAgent_kitty, #added
          }

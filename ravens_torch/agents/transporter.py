@@ -422,7 +422,7 @@ class NoDepthTransporterAgent(TransporterAgent):
             preprocess=utils.preprocess,
             verbose=verbose)
 
-class AdabinsTransporterAgent(TransporterAgent):
+class AdabinsTransporterAgent_nyu(TransporterAgent):
 
     def __init__(self, name, task, n_rotations=36, verbose=False):
         super().__init__(name, task, n_rotations)
@@ -439,5 +439,23 @@ class AdabinsTransporterAgent(TransporterAgent):
             preprocess=utils.preprocess,
             verbose=verbose)
         self.adabins = InferenceHelper(dataset='nyu', device='cuda')
+
+class AdabinsTransporterAgent_kitty(TransporterAgent):
+
+    def __init__(self, name, task, n_rotations=36, verbose=False):
+        super().__init__(name, task, n_rotations)
+
+        self.attention = Attention(
+            in_shape=self.in_shape,
+            n_rotations=1,
+            preprocess=utils.preprocess,
+            verbose=verbose)
+        self.transport = Transport(
+            in_channels=self.in_shape[2],
+            n_rotations=self.n_rotations,
+            crop_size=self.crop_size,
+            preprocess=utils.preprocess,
+            verbose=verbose)
+        self.adabins = InferenceHelper(dataset='kitti', device='cuda')
 
 
