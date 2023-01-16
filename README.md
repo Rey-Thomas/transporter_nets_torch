@@ -8,21 +8,24 @@
 ### Project Description
 Ravens is a collection of simulated tasks in PyBullet for learning vision-based robotic manipulation, with emphasis on pick and place.
 It features a Gym-like API with 10 tabletop rearrangement tasks, each with (i) a scripted oracle that provides expert demonstrations (for imitation learning), and (ii) reward functions that provide partial credit (for reinforcement learning).
+The goal of this project is to see how the depth information impact the performance of the Transporter architecture. 
+We add to the original repository 3 models that can be used:
+  - no-depth-transporter
+  - adabins-nyu-transporter
+  - adabins-kitti-transporter
+
+The first model is the same as the baseline but do not use the depth map.
+The two last models are using a monocular depth estimator, based on the Adabins architecture from https://doi.org/10.1109/CVPR46437.2021.00400 . All the code of the article can be seen on https://github.com/shariqfarooq123/AdaBins . The difference between the two model is which pretrained model of adabins is used. NYU is an indoor dataset. Kitii is an outdoor dataset. 
+
+This project will compare 3 tasks.
+
 
 <img src="https://github.com/google-research/ravens/blob/master/docs/tasks.png" /><br>
 
 (a) **block-insertion**: pick up the L-shaped red block and place it into the L-shaped fixture.<br>
-(b) **place-red-in-green**: pick up the red blocks and place them into the green bowls amidst other objects.<br>
-(c) **towers-of-hanoi**: sequentially move disks from one tower to another—only smaller disks can be on top of larger ones.<br>
-(d) **align-box-corner**: pick up the randomly sized box and align one of its corners to the L-shaped marker on the tabletop.<br>
-(e) **stack-block-pyramid**: sequentially stack 6 blocks into a pyramid of 3-2-1 with rainbow colored ordering.<br>
-(f) **palletizing-boxes**: pick up homogeneous fixed-sized boxes and stack them in transposed layers on the pallet.<br>
-(g) **assembling-kits**: pick up different objects and arrange them on a board marked with corresponding silhouettes.<br>
-(h) **packing-boxes**: pick up randomly sized boxes and place them tightly into a container.<br>
-(i) **manipulating-rope**: rearrange a deformable rope such that it connects the two endpoints of a 3-sided square.<br>
-(j) **sweeping-piles**: push piles of small objects into a target goal zone marked on the tabletop.<br>
+(b) **towers-of-hanoi**: sequentially move disks from one tower to another—only smaller disks can be on top of larger ones.<br>
+(c) **stack-block-pyramid**: sequentially stack 6 blocks into a pyramid of 3-2-1 with rainbow colored ordering.<br>
 
-Some tasks require generalizing to unseen objects (d,g,h), or multi-step sequencing with closed-loop feedback (c,e,f,h,i,j).
 
 
 ## Installation
