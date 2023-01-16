@@ -20,7 +20,7 @@ The two last models are using a monocular depth estimator, based on the Adabins 
 This project will compare 3 tasks.
 
 
-<img src="https://github.com/google-research/ravens/blob/master/docs/task.png" /><br>
+<img src="https://github.com/Rey-Thomas/transporter_nets_torch/blob/main/task.png" /><br>
 
 (a) **block-insertion**: pick up the L-shaped red block and place it into the L-shaped fixture.<br>
 (b) **towers-of-hanoi**: sequentially move disks from one tower to another—only smaller disks can be on top of larger ones.<br>
