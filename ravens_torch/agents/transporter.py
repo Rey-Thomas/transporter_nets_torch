@@ -57,12 +57,12 @@ class TransporterAgent:
             # print(f'shape hmap: {np.shape(hmap[Ellipsis, None])}')
             
             input = Image.fromarray(cmap , 'RGB')
-            # input.show()
+            input.show()
             input = input.resize((640,480))
-            # input.show()
-            # plt.figure()
-            # plt.imshow(hmap, cmap='plasma')
-            # plt.show()
+            input.show()
+            plt.figure()
+            plt.imshow(hmap, cmap='plasma')
+            plt.show()
             bin_centers, predicted_depth = self.adabins.predict_pil(input)
             # print(f'type predicted_depth: {type(predicted_depth)}')
             # print(f'shape predicted_depth: {np.shape(predicted_depth)}')
@@ -71,9 +71,9 @@ class TransporterAgent:
             pred = Image.fromarray(predicted_depth[0][0])
             pred = pred.resize((160,320))
             pred = np.asarray(pred)
-            # plt.figure()
-            # plt.imshow(np.asarray(pred), cmap='plasma')
-            # plt.show()
+            plt.figure()
+            plt.imshow(np.asarray(pred), cmap='plasma')
+            plt.show()
 
             img = np.concatenate((cmap,
                                 pred[Ellipsis, None],
